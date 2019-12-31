@@ -1,7 +1,6 @@
 package xyz.ipkr.pokercloud.mqtt;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.slf4j.Logger;
@@ -18,12 +17,10 @@ import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
 import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
-import org.springframework.messaging.MessagingException;
-import xyz.ipkr.pokercloud.entity.DoorEntity;
-import xyz.ipkr.pokercloud.service.DoorService;
+import xyz.ipkr.pokercloud.entity.LockEntity;
+import xyz.ipkr.pokercloud.service.LockService;
 
 /**
  * MQTT配置，生产者
@@ -66,7 +63,7 @@ public class MqttConfig {
     private String consumerDefaultTopic;
 
     @Autowired
-    private DoorService doorService;
+    private LockService lockService;
 
     private static Gson gson = new Gson();
 
@@ -171,8 +168,8 @@ public class MqttConfig {
     public MessageHandler handler() {
         return message -> {
             LOGGER.info("===================={}============", message.getPayload());
-            DoorEntity door = gson.fromJson(message.getPayload().toString(), DoorEntity.class);
-            doorService.updateDoor(door.getId(), door.getStatus(), door.getAction());
+            LockEntity lock = gson.fromJson(message.getPayload().toString(), LockEntity.class);
+            lockService.updateLock(lock.getId(), lock.getStatus(), lock.getAction());
         };
     }
 }

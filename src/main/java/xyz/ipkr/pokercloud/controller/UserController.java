@@ -1,8 +1,10 @@
 package xyz.ipkr.pokercloud.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.ipkr.pokercloud.entity.UserInfoEntity;
 import xyz.ipkr.pokercloud.service.UserService;
 
 @RestController
@@ -25,5 +27,10 @@ public class UserController {
     @RequestMapping("/check")
     public String checkUser(String username) {
         return userService.checkUser(username) ? "success" : "fail";
+    }
+
+    @RequestMapping("/get_info")
+    public UserInfoEntity getUserInfo(String username) {
+        return userService.getUserInfo(username);
     }
 }
