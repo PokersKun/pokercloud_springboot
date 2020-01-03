@@ -27,4 +27,12 @@ public class UserService {
     public UserInfoEntity getUserInfo(String username) {
         return userMapper.queryInfoByUsername(username);
     }
+
+    public boolean updateInfo(String username, String phone, String email, String nickname) {
+        return userMapper.updateInfoByUsername(username, phone, email, nickname) > 0;
+    }
+
+    public boolean updatePassword(String username, String oldpassword, String newpassword) {
+        return userMapper.updatePasswordByInfo(username, DigestUtils.md5DigestAsHex(oldpassword.getBytes()), DigestUtils.md5DigestAsHex(newpassword.getBytes())) > 0;
+    }
 }
