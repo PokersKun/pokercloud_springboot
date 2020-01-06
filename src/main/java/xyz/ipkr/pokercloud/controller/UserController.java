@@ -38,6 +38,7 @@ public class UserController {
     public String updateInfo(String username, String phone, String email, String nickname) {
         return userService.updateInfo(username, phone, email, nickname) ? "success" : "fail";
     }
+
     @RequestMapping("/set_pass")
     public String updatePassword(String username, String oldpassword, String newpassword) {
         return userService.updatePassword(username, oldpassword, newpassword) ? "success" : "fail";

@@ -19,8 +19,8 @@ import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
-import xyz.ipkr.pokercloud.entity.LockEntity;
-import xyz.ipkr.pokercloud.service.LockService;
+import xyz.ipkr.pokercloud.entity.EspEntity;
+import xyz.ipkr.pokercloud.service.DeviceService;
 
 /**
  * MQTT配置，生产者
@@ -63,7 +63,7 @@ public class MqttConfig {
     private String consumerDefaultTopic;
 
     @Autowired
-    private LockService lockService;
+    private DeviceService deviceService;
 
     private static Gson gson = new Gson();
 
@@ -168,8 +168,8 @@ public class MqttConfig {
     public MessageHandler handler() {
         return message -> {
             LOGGER.info("===================={}============", message.getPayload());
-            LockEntity lock = gson.fromJson(message.getPayload().toString(), LockEntity.class);
-            lockService.updateLock(lock.getId(), lock.getStatus(), lock.getAction());
+            EspEntity esp = gson.fromJson(message.getPayload().toString(), EspEntity.class);
+            deviceService.updateDeviceStatus(esp.getId(), esp.getStatus(), esp.getAction());
         };
     }
 }

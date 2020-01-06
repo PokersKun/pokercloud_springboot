@@ -19,4 +19,9 @@ public class QuickService {
         return quickMapper.queryDeviceIdByUsername(username);
     }
 
+    public boolean deleteQuick(String username, Long device_id) {
+        return quickMapper.delete(username, device_id) > 0;
+    }
+
+
 }

@@ -1,12 +1,14 @@
 package xyz.ipkr.pokercloud.entity;
 
-public class UserDeviceEntity {
+import java.io.Serializable;
+
+public class UserDeviceEntity implements Serializable {
 
     private Long id;
 
     private String username;
 
-    private String device_id;
+    private Long device_id;
 
     private Byte is_quick;
 
@@ -18,7 +20,7 @@ public class UserDeviceEntity {
         this.username = username;
     }
 
-    public void setDevice_id(String device_id) {
+    public void setDevice_id(Long device_id) {
         this.device_id = device_id;
     }
 
@@ -34,7 +36,7 @@ public class UserDeviceEntity {
         return username;
     }
 
-    public String getDevice_id() {
+    public Long getDevice_id() {
         return device_id;
     }
 

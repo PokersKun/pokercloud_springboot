@@ -1,6 +1,8 @@
 package xyz.ipkr.pokercloud.entity;
 
-public class QuickEntity {
+import java.io.Serializable;
+
+public class QuickEntity implements Serializable {
 
     private Long id;
 

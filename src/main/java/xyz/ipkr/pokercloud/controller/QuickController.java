@@ -22,4 +22,9 @@ public class QuickController {
         return quickService.getDeviceId(username);
     }
 
+    @RequestMapping("/delete")
+    public String deleteQuick(String username, Long device_id) {
+        return quickService.deleteQuick(username, device_id) ? "success" : "fail";
+    }
+
 }

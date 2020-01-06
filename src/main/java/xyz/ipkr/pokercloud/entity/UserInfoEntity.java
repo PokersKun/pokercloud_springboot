@@ -1,6 +1,8 @@
 package xyz.ipkr.pokercloud.entity;
 
-public class UserInfoEntity {
+import java.io.Serializable;
+
+public class UserInfoEntity implements Serializable {
 
     private String phone;
 

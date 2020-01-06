@@ -1,6 +1,8 @@
 package xyz.ipkr.pokercloud.entity;
 
-public class DeviceEntity {
+import java.io.Serializable;
+
+public class DeviceEntity implements Serializable {
 
     private Long id;
 
@@ -13,6 +15,10 @@ public class DeviceEntity {
     private String location;
 
     private String manager;
+
+    private Byte status;
+
+    private Integer action;
 
     public void setId(Long id) {
         this.id = id;
@@ -38,6 +44,14 @@ public class DeviceEntity {
         this.manager = manager;
     }
 
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
+    public void setAction(Integer action) {
+        this.action = action;
+    }
+
     public Long getId() {
         return id;
     }
@@ -60,5 +74,13 @@ public class DeviceEntity {
 
     public String getManager() {
         return manager;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public Integer getAction() {
+        return action;
     }
 }
